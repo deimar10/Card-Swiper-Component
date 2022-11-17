@@ -10,7 +10,20 @@ function App() {
   const groups = document.getElementsByClassName("card-group");
 
   function handleHateClick() {
-    console.log("tere")
+
+    const previousIndex = activeIndex + 1 <= groups.length - 1 ?
+      activeIndex + 1 : 0;
+
+      const currentGroup = document.querySelector(`[data-index="${activeIndex}"]`);
+      const previousGroup = document.querySelector(`[data-index="${previousIndex}"]`);
+
+      currentGroup.dataset.status = "previous"
+      previousGroup.dataset.status = "becoming-active-from-after";
+
+      setTimeout(() => {
+        previousGroup.dataset.status = "active";
+        activeIndex = previousIndex;
+      })
   }
 
   function handleLoveClick() {
@@ -22,10 +35,12 @@ function App() {
       const nextGroup = document.querySelector(`[data-index="${nextIndex}"]`);
 
       currentGroup.dataset.status = "after"; 
-      nextGroup.dataset.status = "active";
+      nextGroup.dataset.status = "becoming-active-from-before";
 
+    setTimeout(() => {
+      nextGroup.dataset.status = "active";
       activeIndex = nextIndex;
-    console.log(activeIndex);
+    });
   }
 
   return (
