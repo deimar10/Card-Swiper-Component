@@ -16,10 +16,15 @@ body {
 
 .card-group {
   position: absolute;
+  transition: transform 400ms ease;
 }
 
 .card-group[data-status="unknown"] {
   transform: scale(0);
+}
+
+.card-group[data-status="after"] {
+  transform: translateX(50%) scale(0);
 }
 
 .card-group:hover > .big-card:nth-child(2) {
